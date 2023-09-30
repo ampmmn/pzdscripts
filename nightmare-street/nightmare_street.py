@@ -11,10 +11,10 @@ import pzd
 # nightmare_street.py
 # フェス限ヒロイン202310 ナイトメアストリート 極光夜 上級
 
-class loop:
+class scenario:
 
-    def __init__(self):
-        self.pzd = pzd.pzd()
+    def __init__(self, pzd):
+        self.pzd = pzd
         pass
 
     # メンバのスキルをポチって、ドロップをずらす
@@ -89,15 +89,14 @@ class loop:
             pzd.tap(600, 1416, msg="売却しないのでスキップ")
 
 if __name__ == "__main__":
-    obj = loop()
-
+    pzd = pzd.pzd()
     # adb.exeが見つからない場合は終了
-    if obj.pzd.isAvailable() == False:
+    if pzd.isAvailable() == False:
         print(f"adb.exe does not exist. [{obj.pzd.ADBPath()}]")
         quit()
-
     try:
-        obj.loop()
+        snro = scenario(pzd)
+        snro.loop()
     except KeyboardInterrupt:
         pass
 

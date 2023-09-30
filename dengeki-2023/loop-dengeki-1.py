@@ -26,10 +26,10 @@ import pzd
 #   - 5FでLモモタロスのスキル使用→ずらす
 #   - 6Fでルシファーのスキル使用→ずらす
 
-class loop_dengeki_1:
+class scenario:
 
-    def __init__(self):
-        self.pzd = pzd.pzd()
+    def __init__(self, pzd):
+        self.pzd = pzd
         pass
 
     # メンバのスキルをポチって、ドロップをずらす
@@ -110,14 +110,16 @@ class loop_dengeki_1:
             pzd.tap(600, 1416, msg="売却しないのでスキップ")
 
 if __name__ == "__main__":
-    dengeki = loop_dengeki_1()
+
+    pzd = pzd.pzd()
 
     # adb.exeが見つからない場合は終了
-    if dengeki.pzd.isAvailable() == False:
+    if pzd.isAvailable() == False:
         print(f"adb.exe does not exist. [{dengeki.pzd.ADBPath()}]")
         quit()
 
     try:
+        dengeki = scenario(pzd)
         dengeki.loop()
     except KeyboardInterrupt:
         pass

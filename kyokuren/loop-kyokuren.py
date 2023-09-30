@@ -1,7 +1,10 @@
 # code:utf-8
+
 import os
 import sys
 import time
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 import pzd
 
@@ -33,10 +36,10 @@ import pzd
 #
 #   - 現在使用している機種している機種を前提としてタップ/スワイプする座標値をハードコードしているのでどうにかする
 
-class loop_kyokuren:
+class scenario:
 
-    def __init__(self):
-        self.pzd = pzd.pzd()
+    def __init__(self, pzd):
+        self.pzd = pzd
         pass
 
     # メンバのスキルをポチって、ドロップをずらす
@@ -136,14 +139,16 @@ class loop_kyokuren:
             pzd.skipResult()
 
 if __name__ == "__main__":
-    kyokuren = loop_kyokuren()
+
+    pzd = pzd.pzd()
 
     # adb.exeが見つからない場合は終了
-    if kyokuren.pzd.isAvailable() == False:
+    if pzd.isAvailable() == False:
         print(f"adb.exe does not exist. [{kyokuren.pzd.ADBPath()}]")
         quit()
 
     try:
+        kyokuren = scenario(pzd)
         kyokuren.loop()
     except KeyboardInterrupt:
         pass
