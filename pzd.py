@@ -97,11 +97,11 @@ class pzd:
 
     # ダンジョン選択(1階層目)
     def selectDangeon1(self, index, msg=""):
-        self.adb.tap(600, 580 + index * 280, msg=msg, wait=1)
+        self.adb.tap(600, 640 + index * 280, msg=msg, wait=1)
     
     # ダンジョン選択(2階層目)
     def selectDangeon2(self,index, msg=""):
-        self.adb.tap(600, 580 + index * 280, msg=msg, wait=1)
+        self.adb.tap(600, 640 + index * 280, msg=msg, wait=1)
 
     # スタミナ回復
     def kaifuku(self):
@@ -136,15 +136,15 @@ class pzd:
     
     # Tips画面をスキップする
     def skipTips(self):
-        self.adb.wait(8, msg="TIPS画面がでるまで待機")
+        self.adb.wait(10, msg="TIPS画面がでるまで待機")
         self.adb.backKey(msg="OKボタンをクリックし待機", wait=10)
     
     # 結果画面をスキップ
-    def skipResult(self):
+    def skipResult(self, skipLevelup = True):
         self.adb.tap(600, 1582, duration=1900, msg="結果をスキップ", wait=3)
-    
-        self.adb.tap(600, 1416, msg="レベルアップがあったときのエフェクトまち", wait=3)
-        self.adb.tap(600, 1416)
+        if skipLevelup:
+            self.adb.tap(600, 1416, msg="レベルアップがあったときのエフェクトまち", wait=3)
+            self.adb.tap(600, 1416)
     
         self.adb.tap(600, 1416, msg="売却しないのでスキップ")
 

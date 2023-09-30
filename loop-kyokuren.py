@@ -1,4 +1,8 @@
 # code:utf-8
+import os
+import sys
+import time
+
 import pzd
 
 # loop-kyokuren.py
@@ -102,13 +106,12 @@ class loop_kyokuren:
 
         pzd = self.pzd
     
-        # ダンジョン選択
-        # (2つ目を選択、画面上の一番上に獄練が見えている状態を想定)
-        pzd.selectDangeon1(1, msg="「極練の闘技場」を選択")
-    
         while True:
-            pzd.selectDangeon2(0, msg="「風華の悪戯」を選択")
     
+            # 4時になったら終了
+            if time.strftime("%H") == "04":
+                print("日付が変わったので終了")
+                break
             # スタミナ不足していたら回復
             pzd.kaifuku()
     
