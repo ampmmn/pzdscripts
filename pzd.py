@@ -109,6 +109,7 @@ class pzd:
         # スタミナ足りません画面かどうかにかかわらずとりあえず押す
         # (助っ人選択画面だった場合は、行間なので何も起こらない)
         self.adb.tap(532, 1065, msg="魔法石で回復するボタンを押す", wait=1)
+        self.adb.tap(532, 1080, msg="魔法石で回復するボタンを押す", wait=1)
 
         # ダミー処理
         # (スタミナが足りていて助っ人選択画面になってた場合に自助っ人を選択)
@@ -135,9 +136,9 @@ class pzd:
         self.adb.tap(520, 1757, msg="潜入確認→1Fが始まるまで待機",wait=12)
     
     # Tips画面をスキップする
-    def skipTips(self):
-        self.adb.wait(10, msg="TIPS画面がでるまで待機")
-        self.adb.backKey(msg="OKボタンをクリックし待機", wait=10)
+    def skipTips(self,prewait=10):
+        self.adb.wait(prewait, msg="TIPS画面がでるまで待機")
+        self.adb.backKey(msg="OKボタンをクリックし待機", wait=9)
     
     # 結果画面をスキップ
     def skipResult(self, skipLevelup = True):
