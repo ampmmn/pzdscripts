@@ -30,43 +30,44 @@ class scenario:
     
     # 1Fの処理
     def battle1(self, pzd):
-        pzd.wait(6, msg="先制エフェクト待ち")
-        self.useSkillAndMove(1,msg="ノア1スキル使用", wait=10)
-        self.useSkillAndMove(1,msg="ノア1スキル使用", wait=10)
+        pzd.wait(6, msg="[1/7]先制エフェクト待ち")
+        pzd.useSkill(4,msg="ニーズヘッグスキル使用", wait=3)
+        self.useSkillAndMove(1, msg="ノア1スキル使用", wait=6)
     
     # 2Fの処理
     def battle2(self, pzd):
-        pzd.wait(10, msg="先制攻撃完了待ち")
-        self.useSkillAndMove(2,msg="ノア2スキル使用", wait=6)
+        pzd.wait(11, msg="[2/7]先制攻撃完了待ち")
+        self.useSkillAndMove(1,msg="ノア1スキル使用", wait=6)
     
     # 3Fの処理
     def battle3(self, pzd):
-        pzd.wait(10, msg="先制エフェクト待ち")
+        pzd.wait(15, msg="[3/7]先制エフェクト待ち")
+        pzd.useSkill(4, msg="サレーネスキル使用", wait=4)
         self.useSkillAndMove(2,msg="ノア2スキル使用", wait=6)
 
     # 4Fの処理
     def battle4(self, pzd):
-        pzd.wait(10, msg="先制エフェクト待ち")
-        self.useSkillAndMove(3,msg="ノア3スキル使用", wait=6)
+        pzd.wait(15, msg="[4/7]先制エフェクト待ち")
+        self.useSkillAndMove(2,msg="ノア2スキル使用", wait=6)
 
     # 5Fの処理
     def battle5(self, pzd):
-        pzd.wait(10, msg="先制エフェクト待ち")
+        pzd.wait(15, msg="[5/7]先制エフェクト待ち")
         self.useSkillAndMove(3,msg="ノア3スキル使用", wait=6)
 
     # 6Fの処理
-    def battle5(self, pzd):
-        pzd.wait(10, msg="先制エフェクト待ち")
-        self.useSkill(0, msg="ドラゴンショウグンスキル使用", wait=3)
-        self.useSkillAndMove(1,msg="ノア1スキル使用", wait=6)
+    def battle6(self, pzd):
+        pzd.wait(15, msg="[6/7]先制エフェクト待ち")
+        pzd.useSkill(5, msg="上杉謙信スキル使用", wait=4)
+        self.useSkillAndMove(3,msg="ノア3スキル使用", wait=6)
 
     # 7F(ボス)の処理
     def battleBoss(self, pzd):
-        pzd.wait(10, msg="敵のスキル使用を待つ")
+        pzd.wait(18, msg="[7/7]敵のスキル使用を待つ")
         self.useSkillAndMove(1,msg="ノア1スキル使用", wait=6)
-        pzd.wait(12, msg="敵のスキル使用を待つ")
-        self.useSkill(6, msg="上杉謙信スキル使用", wait=3)
-        self.useSkillAndMove(2,msg="ノア2スキル使用", wait=6)
+        pzd.wait(22, msg="敵のスキル使用を待つ")
+        pzd.useSkill(0, msg="ニーズヘッグスキル使用", wait=3)
+        self.useSkillAndMove(1,msg="ノア1スキル使用", wait=6)
     
     # 周回のメイン処理
     def loop(self):
