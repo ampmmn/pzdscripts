@@ -132,8 +132,11 @@ class pzd:
         # 確定
         self.adb.tap(424, 1097, wait=1)
     
+
+    def enterQuest(self):
         # 潜入確認
         self.adb.tap(520, 1757, msg="潜入確認→1Fが始まるまで待機",wait=12)
+
     
     # Tips画面をスキップする
     def skipTips(self,prewait=10):
@@ -147,5 +150,7 @@ class pzd:
             self.adb.tap(600, 1416, msg="レベルアップがあったときのエフェクトまち", wait=3)
             self.adb.tap(600, 1416)
     
-        self.adb.tap(600, 1416, msg="売却しないのでスキップ")
+        self.adb.tap(600, 1416, msg="売却しないのでスキップ", wait=1)
+        # 念のため
+        self.adb.tap(520, 1757, wait=0.5)
 

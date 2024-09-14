@@ -8,15 +8,15 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 import pzd
 
-# valentine2024.py
-# スイートバレンタイン 甘美祭 上級
+# seiyanohanazono.py
+# 星夜の花園 修練の灯路
 
 class scenario:
 
     def __init__(self, pzd):
         self.pzd = pzd
-        # 連戦モードOFF
-        self.rensenMode = False
+        # 連戦モードON
+        self.rensenMode = True
         pass
 
     # メンバのスキルをポチって、ドロップをずらす
@@ -77,21 +77,26 @@ class scenario:
         pzd = self.pzd
         while True:
 
+            # 4時になったら終了
+            if time.strftime("%H") == "04":
+                print("日付が変わったので終了")
+                break
+
             # 連戦モードOFF時の処理
             if self.rensenMode == False:
                 pzd.wait(1)
                 pzd.tap(532, 583, msg="ダンジョン選択", wait=0.5)
                 pzd.tap(532, 583, msg="助っ人選択", wait=0.5)
 
-            # 4時になったら終了
-            if time.strftime("%H") == "04":
-                print("日付が変わったので終了")
-                break
             # スタミナ不足していたら回復
-            pzd.kaifuku()
+            #pzd.kaifuku()
 
-            # 助っ人選択
-            pzd.selectFriend(0)
+            if self.rensenMode == False:
+                # 助っ人選択
+                pzd.selectFriend(0)
+
+            # 潜入確認
+            pzd.enterQuest()
     
             # 各フロアの処理
             self.battle1(pzd)
@@ -105,9 +110,7 @@ class scenario:
             # TIPS画面と結果画面のスキップ
             pzd.skipTips(prewait=4)
 
-            pzd.tap(600, 1582, duration=1900, msg="結果をスキップ", wait=3)
-            pzd.tap(600, 1416)
-            pzd.tap(600, 1416, msg="売却しないのでスキップ")
+            pzd.skipResult()
 
 if __name__ == "__main__":
     pzd = pzd.pzd()
